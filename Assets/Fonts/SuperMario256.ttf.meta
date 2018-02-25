@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 5d29e432fe30fbd4b990c9f1bf747f5c
+timeCreated: 1519491798
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Super Mario 256
+  fontNames:
+  - Super Mario 256
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
