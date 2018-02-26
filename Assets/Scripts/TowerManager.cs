@@ -23,7 +23,9 @@ public class TowerManager : Singleton<TowerManager> {
             //Finding the worldPoint of where we click, from Vector2.zero (which is buttom left corner)
             RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
 
-            placeTower(hit);
+            //Check to see if mouse press location is on buildSites
+            if(hit.collider.tag == "buildSite")
+                placeTower(hit);
         }
 	}
 
