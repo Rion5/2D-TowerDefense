@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TowerManager : Singleton<TowerManager> {
     private TowerButton towerButtonPressed;
@@ -38,7 +37,12 @@ public class TowerManager : Singleton<TowerManager> {
     //Place new tower on the mouse click location
     public void placeTower(RaycastHit2D hit)
     {
-        GameObject newTower = Instantiate(towerButtonPressed.TowerObject);
-        newTower.transform.position = hit.transform.position;
+        //If the pointer is not over the Tower Button GameObject && the tower button has been pressed
+        //Created new tower at the click location
+        if(!EventSystem.current.IsPointerOverGameObject() && towerButtonPressed != null)
+        {
+            GameObject newTower = Instantiate(towerButtonPressed.TowerObject);
+            newTower.transform.position = hit.transform.position;
+        }
     }
 }
