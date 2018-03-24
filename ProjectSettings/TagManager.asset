@@ -8,6 +8,7 @@ TagManager:
   - enemy
   - buildSite
   - ground
+  - buildSiteFull
   layers:
   - Default
   - TransparentFX
@@ -44,4 +45,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Items
+    uniqueID: 4072953395
+    locked: 0
+  - name: Units
+    uniqueID: 104674139
     locked: 0

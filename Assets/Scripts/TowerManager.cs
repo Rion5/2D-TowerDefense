@@ -3,9 +3,10 @@ using UnityEngine.EventSystems;
 
 public class TowerManager : Singleton<TowerManager> {
     private TowerButton towerButtonPressed;
+    private SpriteRenderer spriteRenderer;  //Setting image to our tower
 	// Use this for initialization
 	void Start () {
-		
+        spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -24,15 +25,26 @@ public class TowerManager : Singleton<TowerManager> {
             RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
 
             //Check to see if mouse press location is on buildSites
+            
             if(hit.collider.tag == "buildSite")
+            {
+                hit.collider.tag = "buildSiteFull";     //This prevents us from stacking towers ontop of each other.
                 placeTower(hit);
+            }
         }
-	}
+
+        //When we have a sprite enabled, have it follow the mouse (I.E - Placing a Tower)
+        if (spriteRenderer.enabled)
+        {
+            followMouse();
+        }
+    }
 
    
     public void selectedTower(TowerButton towerSelected)
     {
         towerButtonPressed = towerSelected;
+        enableDragSprite(towerButtonPressed.DragSprite);
         //Debug.Log("Pressed: " + towerButtonPressed.gameObject);
     }
 
@@ -45,6 +57,23 @@ public class TowerManager : Singleton<TowerManager> {
         {
             GameObject newTower = Instantiate(towerButtonPressed.TowerObject);
             newTower.transform.position = hit.transform.position;
+            disableDragSprite();
         }
+    }
+
+    public void followMouse()
+    {
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector2(transform.position.x, transform.position.y);
+    }
+
+    public void enableDragSprite(Sprite sprite)
+    {
+        spriteRenderer.enabled = true;
+        spriteRenderer.sprite = sprite; //Set sprite to the one we passed in the parameter
+    }
+    public void disableDragSprite()
+    {
+        spriteRenderer.enabled = false;
     }
 }

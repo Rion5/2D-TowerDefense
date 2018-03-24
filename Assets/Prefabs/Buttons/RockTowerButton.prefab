@@ -68,7 +68,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114757468421307914}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: selectedTower
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 114893775059800522}
+          m_ObjectArgumentAssemblyTypeName: TowerButton, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114757468421307914
@@ -111,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerObject: {fileID: 1050508228923082, guid: 2da76efc8df02a54e8ed798caee181bd,
     type: 2}
+  dragSprite: {fileID: 21300000, guid: 14a5806ccc0074646890772edc6a5102, type: 3}
 --- !u!222 &222174129718098624
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -124,14 +136,14 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1687136206421608}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 53, y: -50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 53, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
