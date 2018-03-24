@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4269137828114262}
   - component: {fileID: 212903169601187378}
   - component: {fileID: 58001936176736442}
-  m_Layer: 0
+  - component: {fileID: 114830923383085160}
+  m_Layer: 8
   m_Name: rock
-  m_TagString: Untagged
+  m_TagString: projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,6 +57,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.12
+--- !u!114 &114830923383085160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1109252606824288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48dee63cb06e56e4ab31befa79667cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackStrength: 5
+  projectileType: 0
 --- !u!212 &212903169601187378
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -87,8 +101,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -222013901
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbbfc98c134870446933727b44732f77, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

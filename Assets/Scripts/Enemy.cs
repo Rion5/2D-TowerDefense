@@ -19,7 +19,8 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        enemy = GetComponent<Transform>();	
+        enemy = GetComponent<Transform>();
+        GameManager.Instance.RegisterEnemy(this);
 	}
 	
 	// Update is called once per frame
@@ -54,8 +55,7 @@ public class Enemy : MonoBehaviour {
             target += 1;
         else if (collider2D.tag == "Finish")
         {
-            GameManager.Instance.removeEnemyFromScreen();
-            Destroy(gameObject);
+            GameManager.Instance.UnregisterEnemy(this);
         }
     }
 }

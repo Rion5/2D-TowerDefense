@@ -15,9 +15,8 @@ public class GameManager : Singleton<GameManager> {
     private int totalEnemies;
     [SerializeField]
     private int enemiesPerSpawn;
-    [SerializeField]
-    private int enemiesOnScreen = 0;
 
+    public List<Enemy> EnemyList = new List<Enemy>();
     const float spawnDelay = 2f; //Spawn Delay in seconds
 
     
@@ -34,15 +33,14 @@ public class GameManager : Singleton<GameManager> {
     //This will spawn enemies, wait for the given spawnDelay then call itself again to spawn another enemy
     IEnumerator spawn()
     {
-        if (enemiesPerSpawn > 0 && enemiesOnScreen < totalEnemies)
+        if (enemiesPerSpawn > 0 && EnemyList.Count < totalEnemies)
         {
             for (int i = 0; i < enemiesPerSpawn; i++)
             {
-                if (enemiesOnScreen < maxEnemiesOnScreen)
+                if (EnemyList.Count < maxEnemiesOnScreen)
                 {
                     GameObject newEnemy = Instantiate(enemies[1]) as GameObject;
                     newEnemy.transform.position = spawnPoint.transform.position;
-                    enemiesOnScreen += 1;
                 }
             }
             yield return new WaitForSeconds(spawnDelay);
@@ -50,9 +48,25 @@ public class GameManager : Singleton<GameManager> {
         }
     }
 
-    public void removeEnemyFromScreen()
+    ///Register - when enemy spawns
+    public void RegisterEnemy(Enemy enemy)
     {
-        if (enemiesOnScreen > 0)
-            enemiesOnScreen -= 1;
+        EnemyList.Add(enemy);
     }
+    ///Unregister - When they escape the screen
+    public void UnregisterEnemy(Enemy enemy)
+    {
+        EnemyList.Remove(enemy);
+        Destroy(enemy.gameObject);
+    }
+    ///Destroy - At the end of the wave
+    public void DestroyAllEnemies()
+    {
+        foreach(Enemy enemy in EnemyList)
+        {
+            Destroy(enemy.gameObject);
+        }
+        EnemyList.Clear();
+    }
+
 }
