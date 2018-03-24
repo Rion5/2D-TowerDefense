@@ -19,7 +19,22 @@ public class Tower : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        attackCounter -= Time.deltaTime;
+        //If our closest enemy in range and if its within our attackRange, set our target enemy to the closest enemy in range.
+        if (targetEnemy == null)
+        {
+            Enemy closestEnemy = GetClosestEnemyInRange();
+            if(closestEnemy != null && Vector2.Distance(transform.position, closestEnemy.transform.position) <= attackRange)
+            {
+                targetEnemy = closestEnemy;
+            }
+        }
+
+        //If enemy gets out of attack range, then that enemy can no longer be targeted
+        if(Vector2.Distance(transform.position, targetEnemy.transform.position) > attackRange)
+        {
+            targetEnemy = null;
+        }
 	}
     ///Get Enemies in Attack Range
     private List<Enemy> GetEnemiesInRange()
@@ -37,7 +52,7 @@ public class Tower : MonoBehaviour {
         return enemiesInRange;
     }
     ///Get Closest Enemy - Foreach enemy in range, get the closest enemy
-    private Enemy GetClosestEnemy()
+    private Enemy GetClosestEnemyInRange()
     {
         Enemy closestEnemy = null;
         float smallestDistance = float.PositiveInfinity; 
