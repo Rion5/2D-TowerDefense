@@ -11,21 +11,34 @@ public class Enemy : MonoBehaviour {
     private Transform[] wayPoints;
     [SerializeField]
     private float navigationUpdate;
+    [SerializeField]
+    private int healthPoints;
+    [SerializeField]
+    private int rewardAmount;
 
     private int target = 0;
     private Transform enemy;
+    private Collider2D enemyCollider;
+    private Animator anim;
     private float navigationTime = 0;
+    private bool isDead = false;
 
+    public bool IsDead
+    {
+        get { return isDead; }
+    }
 
 	// Use this for initialization
 	void Start () {
         enemy = GetComponent<Transform>();
+        enemyCollider = GetComponent<Collider2D>();
+        anim = GetComponent<Animator>();
         GameManager.Instance.RegisterEnemy(this);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (wayPoints != null)
+		if (wayPoints != null && !isDead)
         {
             //Lets use change how fast the update occurs
             navigationTime += Time.deltaTime;
@@ -55,7 +68,40 @@ public class Enemy : MonoBehaviour {
             target += 1;
         else if (collider2D.tag == "Finish")
         {
+            GameManager.Instance.RoundEscaped += 1;
+            GameManager.Instance.TotalEscape += 1;
             GameManager.Instance.UnregisterEnemy(this);
+            GameManager.Instance.isWaveOver();
         }
+        else if(collider2D.tag == "projectile")
+        {
+            Projectile newP = collider2D.gameObject.GetComponent<Projectile>();
+            enemyHit(newP.AttackStrength);
+            Destroy(collider2D.gameObject);
+        }
+    }
+    public void enemyHit(int hitPoints)
+    {
+        if(healthPoints - hitPoints > 0)
+        {
+            healthPoints -= hitPoints;
+            anim.Play("Hurt");
+            GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.Hit);
+        }
+        else
+        {
+            anim.SetTrigger("didDie");
+            die();
+        }
+    }
+
+    public void die()
+    {
+        isDead = true;
+        enemyCollider.enabled = false;
+        GameManager.Instance.TotalKilled += 1;
+        GameManager.Instance.AudioSource.PlayOneShot(SoundManager.Instance.Death);
+        GameManager.Instance.AddMoney(rewardAmount);
+        GameManager.Instance.isWaveOver();
     }
 }

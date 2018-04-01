@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4194268115442518}
   - component: {fileID: 212208605159431092}
+  - component: {fileID: 114403995994420380}
   m_Layer: 0
   m_Name: CastleTower
   m_TagString: Untagged
@@ -40,6 +41,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114403995994420380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1798483378517488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db9a35248bd96d4486b9683f1f8d94c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenAttacks: 1
+  attackRange: 3
+  projectile: {fileID: 114830923383085160, guid: a0192c71764edbb48ab2d13191a903fe,
+    type: 2}
 --- !u!212 &212208605159431092
 SpriteRenderer:
   m_ObjectHideFlags: 1

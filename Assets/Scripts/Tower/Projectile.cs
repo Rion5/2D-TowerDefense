@@ -20,4 +20,9 @@ public class Projectile : MonoBehaviour {
     {
         get { return attackStrength; }
     }
+
+    public ProjectileType ProjectileType
+    {
+        get { return projectileType; }
+    }
 }
